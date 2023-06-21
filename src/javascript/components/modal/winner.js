@@ -4,7 +4,7 @@ import createElement from '../../helpers/domHelper';
 
 export default function showWinnerModal(fighter) {
     showModal({
-        title: 'WINNER',
+        title: 'WINNER 🏆',
         // eslint-disable-next-line no-use-before-define
         bodyElement: createBodyWinner(fighter),
         onClose: () => document.location.reload()

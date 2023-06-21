@@ -20,7 +20,7 @@ export async function fight(firstFighter, secondFighter) {
 
                 currentBar.style.width = defender.currenthealth >= 0 ? `${hpBar * 100}%` : '0%';
                 if (hpBar < 0.55) {
-                    currentBar.style.backgroundColor = 'blue';
+                    currentBar.style.backgroundColor = 'yellow';
                 }
                 if (hpBar < 0.25) {
                     currentBar.style.backgroundColor = 'red';
