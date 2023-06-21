@@ -50,15 +50,24 @@ function renderSelectedFighters(selectedFighters) {
 }
 
 export function createFightersSelector() {
-    let selectedFighters = [];
+    const selectedFighters = [];
 
     return async (event, fighterId) => {
         const fighter = await getFighterInfo(fighterId);
         const [playerOne, playerTwo] = selectedFighters;
         const firstFighter = playerOne ?? fighter;
         const secondFighter = playerOne ? playerTwo ?? fighter : playerTwo;
-        selectedFighters = [firstFighter, secondFighter];
+        if (firstFighter !== secondFighter) {
+            selectedFighters.push(fighter);
+        }
+        const filteredArray = [];
+        // eslint-disable-next-line array-callback-return
+        selectedFighters.slice(-2).filter(item => {
+            if (!filteredArray.some(element => element._id === item._id)) {
+                filteredArray.push(item);
+            }
+        });
 
-        renderSelectedFighters(selectedFighters);
+        renderSelectedFighters(filteredArray);
     };
 }
