@@ -12,9 +12,14 @@ class FighterService {
         }
     }
 
+    // eslint-disable-next-line class-methods-use-this
     async getFighterDetails(id) {
-        // todo: implement this method
-        // endpoint - `details/fighter/${id}.json`;
+        try {
+            const apiResult = await callApi(`details/fighter/${id}.json`);
+            return apiResult;
+        } catch (error) {
+            throw error;
+        }
     }
 }
 
