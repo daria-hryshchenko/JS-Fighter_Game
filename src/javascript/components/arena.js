@@ -81,7 +81,6 @@ function createShields(firstFighter, secondFighter) {
     const secondFighterShield = createShield(secondFighter, 'right');
 
     container.append(firstFighterShield, secondFighterShield);
-    console.log(container);
     return container;
 }
 
