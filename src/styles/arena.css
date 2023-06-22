@@ -73,10 +73,6 @@
 .right-shield,
 .left-shield {
     visibility: hidden;
-    background-size: cover;
-    background-image: url('../../resources/shield-model.png');
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
 .shield__img {

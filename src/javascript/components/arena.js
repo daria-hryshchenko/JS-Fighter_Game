@@ -2,6 +2,7 @@ import createElement from '../helpers/domHelper';
 import { createFighterImage } from './fighterPreview';
 import { fight } from './fight';
 import showWinnerModal from './modal/winner';
+import './../../../resources/shield-model.png';
 
 function createFighter(fighter, position) {
     const imgElement = createFighterImage(fighter);
@@ -93,12 +94,13 @@ function createShield(fighter, position) {
     });
 
     shieldElement.append(imgElement);
+    console.log(shieldElement);
     return shieldElement;
 }
 
 function createShieldImage() {
     const attributes = {
-        src: '../../../resources/shield-model.png',
+        src: './../../../resources/shield-model.png',
         alt: 'shield'
     };
     return createElement({
