@@ -2,7 +2,7 @@ import createElement from '../helpers/domHelper';
 import { createFighterImage } from './fighterPreview';
 import { fight } from './fight';
 import showWinnerModal from './modal/winner';
-import './../../../resources/shield-model.png';
+import '../../../resources/shield-model.png';
 
 function createFighter(fighter, position) {
     const imgElement = createFighterImage(fighter);
@@ -81,31 +81,31 @@ function createShields(firstFighter, secondFighter) {
     const secondFighterShield = createShield(secondFighter, 'right');
 
     container.append(firstFighterShield, secondFighterShield);
+    console.log(container);
     return container;
 }
 
 function createShield(fighter, position) {
-    const imgElement = createShieldImage();
+    const shieldImg = createImage(fighter);
     const positionClassName = position === 'right' ? 'right-shield' : 'left-shield';
     const shieldElement = createElement({
         tagName: 'div',
         className: `${positionClassName}`,
         attributes: { id: `${position}-shield` }
     });
-
-    shieldElement.append(imgElement);
-    console.log(shieldElement);
+    shieldElement.append(shieldImg);
     return shieldElement;
 }
 
-function createShieldImage() {
+export function createImage() {
     const attributes = {
-        src: './../../../resources/shield-model.png',
-        alt: 'shield'
+        src: './../../../resources/shield-model.png'
     };
-    return createElement({
+    const imgElement = createElement({
         tagName: 'img',
         className: 'shield-img',
         attributes
     });
+
+    return imgElement;
 }

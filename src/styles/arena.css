@@ -65,6 +65,7 @@
 .arena___shields-container {
     top: 40%;
     width: 100%;
+    height: 30vh;
     position: absolute;
     display: flex;
     justify-content: space-around;
@@ -73,6 +74,8 @@
 .right-shield,
 .left-shield {
     visibility: hidden;
+    width: 100%;
+    height: 100%;
 }
 
 .shield__img {
