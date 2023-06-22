@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 
 const config = () => {
     return defineConfig({
-        base: '/',
+        base: '/JS-Fighter_Game/',
         server: {
             host: 'localhost',
             port: 8000
