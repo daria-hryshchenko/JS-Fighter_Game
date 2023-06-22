@@ -56,8 +56,9 @@ function createArena(selectedFighters) {
     const arena = createElement({ tagName: 'div', className: 'arena___root' });
     const healthIndicators = createHealthIndicators(...selectedFighters);
     const fighters = createFighters(...selectedFighters);
+    const shields = createShields(...selectedFighters);
 
-    arena.append(healthIndicators, fighters);
+    arena.append(healthIndicators, fighters, shields);
     return arena;
 }
 
@@ -70,5 +71,39 @@ export default function renderArena(selectedFighters) {
 
     fight(...selectedFighters).then(fighter => {
         showWinnerModal(fighter);
+    });
+}
+
+function createShields(firstFighter, secondFighter) {
+    const container = createElement({ tagName: 'div', className: `arena___shields-container` });
+    const firstFighterShield = createShield(firstFighter, 'left');
+    const secondFighterShield = createShield(secondFighter, 'right');
+
+    container.append(firstFighterShield, secondFighterShield);
+    return container;
+}
+
+function createShield(fighter, position) {
+    const imgElement = createShieldImage();
+    const positionClassName = position === 'right' ? 'right-shield' : 'left-shield';
+    const shieldElement = createElement({
+        tagName: 'div',
+        className: `${positionClassName}`,
+        attributes: { id: `${position}-shield` }
+    });
+
+    shieldElement.append(imgElement);
+    return shieldElement;
+}
+
+function createShieldImage() {
+    const attributes = {
+        src: './../../../resources/Shield_Model.png',
+        alt: 'shield'
+    };
+    return createElement({
+        tagName: 'img',
+        className: 'shield-img',
+        attributes
     });
 }

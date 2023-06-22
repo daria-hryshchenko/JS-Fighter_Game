@@ -70,11 +70,23 @@
     justify-content: space-around;
 }
 
-.arena___right-shield,
-.arena___left-shield {
+.right-shield,
+.left-shield {
     visibility: hidden;
 }
 
 .shield__img {
-    height: 25vh;
+    height: 30vh;
+}
+
+.arena__attacking-fighter {
+    top: 40%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    background-color: #598aeb;
+    color: black;
+    font-weight: 600;
+    font-size: large;
 }

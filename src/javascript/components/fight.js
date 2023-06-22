@@ -1,17 +1,16 @@
 import controls from '../../constants/controls';
 
 export async function fight(firstFighter, secondFighter) {
-    const leftHealthBar = document.querySelector('#left-fighter-indicator');
-    const rightHealthBar = document.querySelector('#right-fighter-indicator');
-    const firstPlayer = { ...firstFighter };
-    const secondPlayer = { ...secondFighter };
-
-    firstPlayer.currenthealth = firstFighter.health;
-    secondPlayer.currenthealth = secondFighter.health;
-    firstPlayer.isCriticalActive = true;
-    secondPlayer.isCriticalActive = true;
-
     return new Promise(resolve => {
+        const leftHealthBar = document.querySelector('#left-fighter-indicator');
+        const rightHealthBar = document.querySelector('#right-fighter-indicator');
+        const firstPlayer = { ...firstFighter };
+        const secondPlayer = { ...secondFighter };
+
+        firstPlayer.currenthealth = firstFighter.health;
+        secondPlayer.currenthealth = secondFighter.health;
+        firstPlayer.isCriticalActive = true;
+        secondPlayer.isCriticalActive = true;
         const hit = (attacker, defender, damage, bar, isCriticalActive) => {
             const currentDefender = defender;
             const currentBar = bar;
@@ -50,7 +49,6 @@ export async function fight(firstFighter, secondFighter) {
             const { isCriticalActive, isBlock } = currentAttacker;
 
             if (checkCombo(Array.from(currentAttacker.pressedCombo), combo) && isCriticalActive && !isBlock) {
-                // eslint-disable-next-line no-use-before-define
                 fighterHit(currentAttacker, defender, getCriticalDamage, bar, true);
                 currentAttacker.isCriticalActive = false;
                 setTimeout(() => {
@@ -63,9 +61,11 @@ export async function fight(firstFighter, secondFighter) {
             switch (event.code) {
                 case controls.PlayerOneBlock:
                     firstPlayer.isBlock = true;
+                    onIsBlockingShield('left', firstPlayer);
                     break;
                 case controls.PlayerTwoBlock:
                     secondPlayer.isBlock = true;
+                    onIsBlockingShield('right', secondPlayer);
                     break;
                 default:
                     if (controls.PlayerOneCriticalHitCombination.includes(event.code)) {
@@ -73,17 +73,18 @@ export async function fight(firstFighter, secondFighter) {
                             firstPlayer,
                             secondPlayer,
                             hit,
+                            onIsBlockingShield,
                             rightHealthBar,
                             event.code,
                             controls.PlayerOneCriticalHitCombination
                         );
                     }
                     if (controls.PlayerTwoCriticalHitCombination.includes(event.code)) {
-                        // eslint-disable-next-line no-use-before-define
                         tryToCriticalHit(
                             secondPlayer,
                             firstPlayer,
                             hit,
+                            onIsBlockingShield,
                             leftHealthBar,
                             event.code,
                             controls.PlayerTwoCriticalHitCombination
@@ -96,18 +97,18 @@ export async function fight(firstFighter, secondFighter) {
         document.addEventListener('keyup', event => {
             switch (event.code) {
                 case controls.PlayerOneAttack:
-                    // eslint-disable-next-line no-use-before-define
                     hit(firstPlayer, secondPlayer, getDamage, rightHealthBar);
                     break;
                 case controls.PlayerOneBlock:
                     firstPlayer.isBlock = false;
+                    onIsBlockingShield('left', firstPlayer);
                     break;
                 case controls.PlayerTwoAttack:
-                    // eslint-disable-next-line no-use-before-define
                     hit(secondPlayer, firstPlayer, getDamage, leftHealthBar);
                     break;
                 case controls.PlayerTwoBlock:
                     secondPlayer.isBlock = false;
+                    onIsBlockingShield('right', secondPlayer);
                     break;
                 default:
                     if (controls.PlayerOneCriticalHitCombination.includes(event.code)) {
@@ -127,7 +128,6 @@ function randomRange(min, max) {
 }
 
 export function getDamage(attacker, defender) {
-    // eslint-disable-next-line no-use-before-define
     const damage = getHitPower(attacker) - getBlockPower(defender);
     return damage > 0 ? damage : 0;
 }
@@ -135,18 +135,27 @@ export function getDamage(attacker, defender) {
 export function getHitPower(fighter) {
     const { attack } = fighter;
     const criticalHitChance = randomRange(1, 2);
-    const power = attack * criticalHitChance;
-    return power;
+    return attack * criticalHitChance;
 }
 
 export function getBlockPower(fighter) {
     const { defense } = fighter;
     const dodgeChance = randomRange(1, 2);
-    const power = defense * dodgeChance;
-    return power;
+    return defense * dodgeChance;
 }
 
 function getCriticalDamage(fighter) {
     const { attack } = fighter;
     return attack * 2;
 }
+
+const onIsBlockingShield = (position, fighter) => {
+    const shield = document.getElementById(`${position}-shield`);
+    const { isBlock } = fighter;
+    if (isBlock === true) {
+        shield.style.visibility = 'visible';
+    }
+    if (isBlock === false) {
+        shield.style.visibility = 'hidden';
+    }
+};
