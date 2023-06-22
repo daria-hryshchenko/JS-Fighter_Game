@@ -85,9 +85,8 @@ function createShields(firstFighter, secondFighter) {
 }
 
 function createShield(fighter, position) {
-    // const shieldImg = createImage(fighter);
     const positionClassName = position === 'right' ? 'right-shield' : 'left-shield';
-    const shiel = createElement({
+    const shieldImg = createElement({
         tagName: 'div',
         className: 'shiel-wrapp'
     });
@@ -96,24 +95,9 @@ function createShield(fighter, position) {
         className: `${positionClassName}`,
         attributes: { id: `${position}-shield` }
     });
-    shiel.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" class="shiel-icon" viewBox="0 0 512 512"><path d="M256 481c-3.5 0-7-1.2-9.9-3.7-21.8-19.1-42.6-36.8-62.1-53.4C73.8 330 0 267.9 0 177.5 0 94 59 31 136 31c60.7 0 99.6 42.4 120 80.5C276.4 73.4 315.3 31 376 31c77 0 136 63 136 146.5 0 90.4-73.8 152.4-184 246.4-19.5 16.6-40.3 34.3-62.1 53.4C263 479.8 259.5 481 256 481z" fill="#FD3018"/><path d="M265.9 477.3c21.8-19.1 42.6-36.8 62.1-53.4C438.2 330 512 267.9 512 177.5 512 94 453 31 376 31c-60.7 0-99.6 42.4-120 80.5V481C259.5 481 263 479.8 265.9 477.3z" fill="#E61E14"/></svg>
+    shieldImg.innerHTML = `
+        <svg width="300px" height="300px" class=="shield-icon " viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--twemoji" preserveAspectRatio="xMidYMid meet"><path fill="#CCD6DD" d="M33 3c-7-3-15-3-15-3S10 0 3 3C0 18 3 31 18 36c15-5 18-18 15-33z"></path><path fill="#55ACEE" d="M18 33.884C6.412 29.729 1.961 19.831 4.76 4.444C11.063 2.029 17.928 2 18 2c.071 0 6.958.04 13.24 2.444c2.799 15.387-1.652 25.285-13.24 29.44z"></path><path fill="#269" d="M31.24 4.444C24.958 2.04 18.071 2 18 2v31.884c11.588-4.155 16.039-14.053 13.24-29.44z"></path></svg>
     `;
-    shieldElement.append(shiel);
-    console.log(shieldElement);
+    shieldElement.append(shieldImg);
     return shieldElement;
 }
-
-// export function createImage() {
-//     const attributes = {
-//         src: './../../../resources/shield-model.png',
-//         alt: 'shield'
-//     };
-//     const imgElement = createElement({
-//         tagName: 'img',
-//         className: 'shield-img',
-//         attributes
-//     });
-
-//     return imgElement;
-// }

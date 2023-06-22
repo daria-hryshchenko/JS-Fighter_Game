@@ -75,7 +75,7 @@
     width: 100%;
     height: 100%;
 }
-.shiel-icon {
+.shield-icon {
     height: 300px;
     width: 300px;
 }
@@ -83,10 +83,6 @@
 .right-shield,
 .left-shield {
     visibility: hidden;
-}
-
-.shield__img {
-    height: 30vh;
 }
 
 .arena__attacking-fighter {
