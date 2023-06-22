@@ -98,7 +98,7 @@ function createShield(fighter, position) {
 
 function createShieldImage() {
     const attributes = {
-        src: './../../../resources/Shield_Model.png',
+        src: '../../../resources/shield-model.png',
         alt: 'shield'
     };
     return createElement({
