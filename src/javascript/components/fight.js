@@ -5,6 +5,7 @@ export async function fight(firstFighter, secondFighter) {
     const rightHealthBar = document.querySelector('#right-fighter-indicator');
     const firstPlayer = { ...firstFighter };
     const secondPlayer = { ...secondFighter };
+
     firstPlayer.currenthealth = firstFighter.health;
     secondPlayer.currenthealth = secondFighter.health;
     firstPlayer.isCriticalActive = true;
