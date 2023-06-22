@@ -1,13 +1,30 @@
 .fighter-preview___root {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 250px;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 250px;
 }
 
 .fighter-preview___right {
-  align-items: flex-end;
+    align-items: flex-end;
 }
 
 .fighter-preview___left {
-  align-items: flex-start;
+    align-items: flex-start;
+}
+
+.fighter-preview___description {
+    background-color: #b38536f6;
+    border: 5px solid #1b1610;
+    padding: 10px;
+    text-align: center;
+    font-weight: 400;
+}
+
+.fighter-preview___img {
+    display: flex;
+    max-height: 330px;
+    position: relative;
+    top: -7px;
+    margin: 0 auto;
+    padding: 15px;
 }
