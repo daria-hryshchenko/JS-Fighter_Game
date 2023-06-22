@@ -74,8 +74,6 @@
 .right-shield,
 .left-shield {
     visibility: hidden;
-    width: 100%;
-    height: 100%;
 }
 
 .shield__img {
